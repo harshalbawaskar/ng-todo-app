@@ -1,0 +1,11 @@
+<div>
+  <h4 class="card-title">Your Todo List</h4>
+  <a class="btn btn-outline-info mb-3 pull-right" [routerLink]="['add']">Add New Todo</a>
+</div>
+<div class="col-md-12">
+  <div class="row">
+    <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

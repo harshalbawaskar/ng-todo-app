@@ -1,0 +1,20 @@
+<div class="col-md-8 border border-success m-auto p-3 rounded">
+  <form ngForm>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Title</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title" [(ngModel)]="todo.title">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Description</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" name="description" placeholder="Description"
+        [(ngModel)]="todo.description">
+    </div>
+    <div class="custom-control custom-checkbox mb-2">
+      <input type="checkbox" class="custom-control-input" id="customCheck" name="isCompleted" [(ngModel)]="todo.isCompleted">
+      <label class="custom-control-label" for="customCheck">Mark Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="saveChanges()">Save</button>
+    <button type="button" class="btn btn-dark ml-3" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
