@@ -11,16 +11,17 @@ import { Router } from '@angular/router';
 export class AddTodoComponent implements OnInit {
   public todo: Todo;
 
-  constructor(private todosSerrvice: TodosService,
+  constructor(private todosService: TodosService,
     private router: Router) {
     this.todo = new Todo();
+    this.todo.id = '12345' + (todosService.todos.length + 1);
   }
 
   ngOnInit() { }
 
   saveTodo() {
     if (this.todo.title && this.todo.description) {
-      this.todosSerrvice.addTodo(this.todo);
+      this.todosService.addTodo(this.todo);
       this.router.navigate(['/todos']);
     }
   }

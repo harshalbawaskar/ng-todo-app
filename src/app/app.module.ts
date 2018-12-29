@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,8 +26,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    NgbModalModule
+    FormsModule
   ],
   providers: [
     TodosService,

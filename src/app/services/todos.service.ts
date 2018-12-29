@@ -24,14 +24,28 @@ export class TodosService {
   }
 
   deleteTodo(todo: Todo) {
-    this.todos = this.todos
-      .filter((td) => td.id != todo.id);
+    let idx = null;
+
+    this.todos.forEach((t: Todo, index: number) => {
+      if (todo.id === t.id) {
+        idx = index;
+      }
+    })
+
+    if (idx !== null) {
+      this.todos.splice(idx, 1);
+    }
   }
 
-  updateTodo(todo: Todo) {
-    this.deleteTodo(todo);
-
-    this.todos.push(todo);
+  updateTodo(newTodo: Todo) {
+    for (const todo of this.todos) {
+      if (todo.id === newTodo.id) {
+        todo.description = newTodo.description;
+        todo.title = newTodo.title;
+        todo.isCompleted = newTodo.isCompleted;
+        break;
+      }
+    }
   }
 
   addTodo(todo: Todo) {
