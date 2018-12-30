@@ -3,22 +3,29 @@
 </div>
 
 <div class="col-md-4 border border-success m-auto p-3 rounded">
-  <form ngForm>
+  <form #editTodoForm="ngForm" (ngSubmit)="saveChanges()">
     <div class="form-group">
-      <label for="formGroupExampleInput">Title</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="Title" [(ngModel)]="todo.title">
+      <label>Title</label>
+      <input type="text" class="form-control" name="title" placeholder="Title" #title="ngModel" [(ngModel)]="todo.title"
+        required>
+      <div class="text-danger" *ngIf="title.dirty && title.invalid">
+        Title is mandatory.
+      </div>
     </div>
     <div class="form-group">
-      <label for="formGroupExampleInput2">Description</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" name="description" placeholder="Description"
-        [(ngModel)]="todo.description">
+      <label>Description</label>
+      <textarea class="form-control" name="description" placeholder="Description" #description="ngModel" [(ngModel)]="todo.description"
+        required></textarea>
+      <div class="text-danger" *ngIf="description.dirty && description.invalid">
+        Description is mandatory.
+      </div>
     </div>
     <div class="custom-control custom-checkbox mb-2">
       <input type="checkbox" class="custom-control-input" id="customCheck" name="isCompleted" [(ngModel)]="todo.isCompleted">
       <label class="custom-control-label" for="customCheck">Mark Completed</label>
     </div>
-
-    <button type="submit" class="btn btn-success" (click)="saveChanges()">Save</button>
+    <hr>
+    <button type="submit" class="btn btn-success" [disabled]="editTodoForm.invalid">Save</button>
     <button type="button" class="btn btn-dark ml-3" (click)="cancelEdit()">Cancel</button>
   </form>
 </div>
