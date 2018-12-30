@@ -1,21 +1,31 @@
 <div class="col-md-6">
   <div class="card-header bg-transparent border border-light">
-    <h4 class="card-title">Add New Todo</h4>
+    <h4 class="card-title d-inline">Add New Todo</h4>
+    <a class="btn btn-outline-dark mb-3 float-right" routerLink="/todos">
+      Back to Todos
+    </a>
   </div>
-  <div class="card-body bg-transparent border border-light">
-    <form ngForm>
+  <form (ngSubmit)="saveTodo()" #todoForm="ngForm">
+    <div class="card-body bg-transparent border border-light">
       <div class="form-group">
         <label>Title</label>
-        <input type="text" class="form-control" name="title" placeholder="Title" [(ngModel)]="todo.title">
+        <input type="text" class="form-control" name="title" placeholder="Title" ngModel #title="ngModel" required>
+        <div class="text-danger" *ngIf="title.touched && title.invalid">
+          Title is mandatory.
+        </div>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <textarea type="text" class="form-control" name="description" placeholder="Description" [(ngModel)]="todo.description"></textarea>
+        <textarea type="text" class="form-control" name="description" placeholder="Description" ngModel #description="ngModel"
+          required></textarea>
+        <div class="text-danger" *ngIf="description.touched && description.invalid">
+          Description is mandatory.
+        </div>
       </div>
-    </form>
-  </div>
-  <div class="card-footer bg-transparent border border-light">
-    <button type="submit" class="btn btn-primary mr-2" (click)="saveTodo()">Save</button>
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-  </div>
+    </div>
+    <div class="card-footer bg-transparent border border-light">
+      <button type="submit" class="btn btn-primary mr-2" [disabled]="todoForm.invalid">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="clear()">Clear</button>
+    </div>
+  </form>
 </div>
